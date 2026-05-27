@@ -3,7 +3,7 @@ Health insurance coverage is a critical determinant of healthcare access, preven
 
 This project leverages county-level data from Data Commons, a publicly accessible knowledge graph aggregating U.S. Census, CDC, and other federal data sources. The primary dataset explores “Which counties in the US have the highest rates of uninsured?”
 
-Dataset link: Data Commons – Uninsured Rates by County
+Dataset link: [Data Commons – Uninsured Rates by County](https://datacommons.org/explore#client=ui_landing&q=Which+counties+in+the+US+have+the+highest+rates+of+uninsured)
 
 The dataset provides county-level measures of health insurance coverage and its socioeconomic, demographic, and structural determinants. Specifically, the dataset captures:
 
@@ -21,14 +21,14 @@ These features enable both descriptive and predictive modeling of uninsured rate
 
 Existing literature has primarily focused on national or state-level trends [1][3], with fewer predictive modeling studies at the county level. Machine learning offers an opportunity to move beyond correlation toward identifying nonlinear relationships and clustering counties with similar risk profiles.
 
-2. Problem Definition
-Problem:
+### Problem Definition
+**Problem:**
 
 Can we use county-level socioeconomic and demographic features to predict and identify high-risk counties with elevated uninsured rates, and uncover structural clusters of counties with similar insurance vulnerability profiles?
 
 We aim to predict uninsured rate as a continuous variable, classify counties into high-risk vs. low-risk categories, and identify latent clusters of counties with similar socioeconomic patterns.
 
-Motivation:
+### Motivation:
 
 Healthcare access inequities remain a pressing national concern. Counties with persistently high uninsured rates often overlap with economically disadvantaged or rural regions. However, policymakers typically rely on descriptive statistics rather than predictive tools.
 
