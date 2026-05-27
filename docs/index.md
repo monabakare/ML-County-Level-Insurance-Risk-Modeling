@@ -195,3 +195,16 @@ Together, these models provide a comprehensive framework combining prediction, c
 Socioeconomic indicators can successfully identify counties at elevated risk for high uninsured rates, though exact uninsured-rate prediction remains more difficult. Across all supervised models, Median Household Income and Unemployment Rate consistently emerged as the strongest predictors of insurance vulnerability. Classification models substantially outperformed regression models overall, suggesting that identifying high-risk counties is more tractable than precisely estimating uninsured rates. 
 
 Clustering further revealed that counties naturally group into structurally distinct socioeconomic profiles characterized by differences in income, unemployment, population scale, and demographic composition. Together, these results demonstrate that machine learning can effectively uncover meaningful patterns in insurance vulnerability while providing actionable insights for identifying high-risk counties and understanding broader structural disparities.
+
+### 5. References
+
+[1] B. D. Sommers, A. E. Gawande, and K. Baicker, “Health Insurance Coverage and Health — What the Recent Evidence Tells Us,” New England Journal of Medicine, vol. 377, no. 6, pp. 586–593, 2017.
+https://www.nejm.org/doi/full/10.1056/NEJMsb1706645
+
+[2] A. S. Wilper et al., “Health Insurance and Mortality in US Adults,” American Journal of Public Health, vol. 99, no. 12, pp. 2289–2295, 2009.
+https://ajph.aphapublications.org/doi/10.2105/AJPH.2008.157685
+
+[3] K. Baicker et al., “The Oregon Experiment — Effects of Medicaid on Clinical Outcomes,” New England Journal of Medicine, vol. 368, pp. 1713–1722, 2013.
+https://www.nejm.org/doi/full/10.1056/NEJMsa1212321
+
+[4] scikit-learn developers, “Model evaluation: Quantifying the quality of predictions,” scikit-learn, 2025. [Online]. Available: https://scikit-learn.org/stable/modules/model_evaluation.html. [Accessed: 24-Feb-2026].
