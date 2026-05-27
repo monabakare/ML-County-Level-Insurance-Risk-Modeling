@@ -50,7 +50,7 @@ def train_random_forest_classifier(X_train, y_train, X_test, y_test, preprocesso
 
     return model, y_pred, y_prob, metrics
 
-## just for testing; can be removed once Metrics implemented 
+##testing
 if __name__ == "__main__":
     df = fetch_county_dataset(extended=True)
 
