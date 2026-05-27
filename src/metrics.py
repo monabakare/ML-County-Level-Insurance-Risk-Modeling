@@ -190,6 +190,52 @@ def _save_confusion_matrix(cm, title, filename):
 
     print(f"[saved] {path}")
 
+def _save_elbow_plot(X, filename="Elbow_method.png"):
+    path = _figures_dir() / filename
+
+    inertias = []
+    k_values = range(2, 10)
+
+    for k in k_values:
+        kmeans = KMeans(
+            n_clusters=k,
+            random_state=42,
+            n_init=10,
+        )
+        kmeans.fit(X)
+        inertias.append(kmeans.inertia_)
+
+    plt.figure()
+    plt.plot(k_values, inertias, marker="o")
+    plt.xlabel("Number of Clusters (k)")
+    plt.ylabel("Inertia")
+    plt.title("Elbow Method")
+
+    plt.savefig(path, dpi=300, bbox_inches="tight")
+    plt.close()
+
+    print(f"[saved] {path}")
+
+
+def _save_pca_clusters(X_reduced, labels, filename="PCA.png"):
+    path = _figures_dir() / filename
+
+    plt.figure()
+    plt.scatter(
+        X_reduced[:, 0],
+        X_reduced[:, 1],
+        c=labels,
+    )
+
+    plt.xlabel("Principal Component 1")
+    plt.ylabel("Principal Component 2")
+    plt.title("KMeans Clusters (PCA Projection)")
+
+    plt.savefig(path, dpi=300, bbox_inches="tight")
+    plt.close()
+
+    print(f"[saved] {path}")
+
 
 # ============================================================
 # METRIC HELPERS
@@ -399,7 +445,7 @@ def run_clustering_metrics():
 
     print("\n=== Clustering Metrics + Viz ===")
 
-    df = fetch_county_dataset(extended=True)
+    df = fetch_county_dataset()
 
     df["UninsuredRate"] = (
         df["Count_Household_NoHealthInsurance"] /
@@ -448,7 +494,11 @@ def run_clustering_metrics():
         n_init=10,
     )
 
+    _save_elbow_plot(X_reduced)
+
     labels = kmeans.fit_predict(X_reduced)
+
+    _save_pca_clusters(X_reduced, labels)
 
     sil = silhouette_score(X_reduced, labels)
     cal = calinski_harabasz_score(X_reduced, labels)
