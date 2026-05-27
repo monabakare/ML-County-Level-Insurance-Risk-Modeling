@@ -196,6 +196,10 @@ Socioeconomic indicators can successfully identify counties at elevated risk for
 
 Clustering further revealed that counties naturally group into structurally distinct socioeconomic profiles characterized by differences in income, unemployment, population scale, and demographic composition. Together, these results demonstrate that machine learning can effectively uncover meaningful patterns in insurance vulnerability while providing actionable insights for identifying high-risk counties and understanding broader structural disparities.
 
+#### Limitations and Next Steps
+
+The consistent underprediction of high uninsured counties suggests important variables, such as state-level policy, density of community health centers, employer-sponsored insurance coverage, access to hospitals, are not fully captured in the dataset. Incoporating these features would likely improve regression performance and reduce prediction error for high-risk counties. For classification, threshold tuning based on policy relevance could improve practical utility. Lastly, clustering revealed that small counties and large urban counties represent distinct insurance vulnerability that may require different policy interventions. Future work could use cluster membership as an additional feature in supervised models. Finally, extending the framework to longitudinal data would enable trend analysis and early warning systems for counties whose uninsured rates as rising.
+
 ### 5. References
 
 [1] B. D. Sommers, A. E. Gawande, and K. Baicker, “Health Insurance Coverage and Health — What the Recent Evidence Tells Us,” New England Journal of Medicine, vol. 377, no. 6, pp. 586–593, 2017.
