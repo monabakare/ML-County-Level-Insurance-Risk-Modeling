@@ -1,0 +1,6 @@
+pandas
+numpy
+matplotlib
+scikit-learn
+datacommons_client
+datacommons_pandas
