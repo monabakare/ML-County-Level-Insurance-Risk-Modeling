@@ -108,7 +108,7 @@ The core goal of our regression task was to predict county-level uninsured rates
 
 | Set     | ElasticNet Visualization                           | RandomForest Regression Visualization                            |
 |---------|----------------------------------------------------|------------------------------------------------------------------|
-| Holdout | ![ElasticNet](figures/elasticnet.png)              | ![RandomForest Regression](figures/random_forest.png)            |
+| Holdout | ![ElasticNet](figures/elasticnet_cv_metrics.png)              | ![RandomForest Regression](figures/random_forest_cv_metrics.png)            |
 | CV      | ![ElasticNetCV](figures/elasticnet_cv_metrics.png) | ![RandomForest Regression](figures/random_forest_cv_metrics.png) |
 
 Random Forest achieved stronger regression performance overall, producing lower prediction error and substantially higher R² values than ElasticNet. The higher R² indicates that Random Forest better captures overall variation in uninsured rates by modeling nonlinear socioeconomic relationships. Cross-validation results for both models were relatively stable, suggesting reasonable generalization performance despite the inherent difficulty of predicting exact uninsured rates. 
