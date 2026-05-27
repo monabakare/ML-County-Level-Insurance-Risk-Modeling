@@ -1,9 +1,4 @@
-from src.preprocess import (
-    fetch_county_dataset,
-    split_data,
-    build_preprocessor,
-    get_feature_types
-)
+
 
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
@@ -43,59 +38,3 @@ def train_logistic_regression(X_train, y_train, X_test, y_test, preprocessor):
     return model, y_pred, y_prob, metrics
 
 
-## just for testing; can be removed once Metrics implemented 
-if __name__ == "__main__":
-
-    # Load dataset
-    df = fetch_county_dataset()
-
-    # Create uninsured rate
-    df["UninsuredRate"] = (
-        df["Count_Household_NoHealthInsurance"] /
-        df["Count_Person"]
-    )
-
-    df = df.dropna(subset=["UninsuredRate"])
-
-    # Create binary target using median split
-    threshold = df["UninsuredRate"].median()
-
-    df["HighRisk"] = (
-        df["UninsuredRate"] > threshold
-    ).astype(int)
-
-    # Remove leakage columns
-    df = df.drop(columns=[
-        "UninsuredRate",
-        "Count_Household_NoHealthInsurance",
-        "Count_Person"
-    ])
-
-    target_column = "HighRisk"
-
-    # Train/test split
-    X_train, X_test, y_train, y_test = split_data(df, target_column)
-
-    # Preprocessing
-    numeric_features, categorical_features = get_feature_types(X_train)
-
-    preprocessor = build_preprocessor(
-        numeric_features,
-        categorical_features
-    )
-
-    # Train model
-    model, y_pred, y_prob, metrics = train_logistic_regression(
-    X_train,
-    y_train,
-    X_test,
-    y_test,
-    preprocessor
-)
-
-    # Print results
-    print("\nLogistic Regression Results")
-    print("----------------------------")
-
-    for key, value in metrics.items():
-        print(f"{key}: {value}")

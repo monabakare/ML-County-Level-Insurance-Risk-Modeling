@@ -1,12 +1,5 @@
 import numpy as np
 
-from src.preprocess import (
-    fetch_county_dataset,
-    split_data,
-    get_feature_types,
-    build_preprocessor
-)
-
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import ElasticNetCV
 from sklearn.metrics import (
@@ -44,39 +37,3 @@ def train_elastic_net(X_train, y_train, X_test, y_test, preprocessor):
         "mae": mae,
         "r2": r2
     }
-
-
-# =========================
-# TEST
-# =========================
-
-df = fetch_county_dataset(extended=False)
-
-df["UninsuredRate"] = (
-    df["Count_Household_NoHealthInsurance"] /
-    df["Count_Person"]
-)
-
-df = df.dropna(subset=["UninsuredRate"])
-
-if "place" in df.columns:
-    df = df.drop(columns=["place"])
-
-X_train, X_test, y_train, y_test = split_data(df, "UninsuredRate")
-
-numeric_features, categorical_features = get_feature_types(X_train)
-
-preprocessor = build_preprocessor(
-    numeric_features,
-    categorical_features
-)
-
-model, y_pred, metrics = train_elastic_net(
-    X_train,
-    y_train,
-    X_test,
-    y_test,
-    preprocessor
-)
-
-print(metrics)

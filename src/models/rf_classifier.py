@@ -1,9 +1,4 @@
-from src.preprocess import (
-    fetch_county_dataset,
-    split_data,
-    build_preprocessor,
-    get_feature_types,
-)
+
 
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
@@ -50,42 +45,3 @@ def train_random_forest_classifier(X_train, y_train, X_test, y_test, preprocesso
 
     return model, y_pred, y_prob, metrics
 
-##testing
-if __name__ == "__main__":
-    df = fetch_county_dataset(extended=True)
-
-    df["UninsuredRate"] = (
-        df["Count_Household_NoHealthInsurance"] /
-        df["Count_Person"]
-    )
-
-    df = df.dropna(subset=["UninsuredRate"])
-
-    threshold = df["UninsuredRate"].median()
-    df["HighRisk"] = (df["UninsuredRate"] > threshold).astype(int)
-
-    df = df.drop(columns=[
-        "UninsuredRate",
-        "Count_Household_NoHealthInsurance",
-        "Count_Person"
-    ])
-
-    target_column = "HighRisk"
-
-    X_train, X_test, y_train, y_test = split_data(df, target_column)
-
-    numeric_features, categorical_features = get_feature_types(X_train)
-    preprocessor = build_preprocessor(numeric_features, categorical_features)
-
-    model, y_pred, y_prob, metrics = train_random_forest_classifier(
-        X_train,
-        y_train,
-        X_test,
-        y_test,
-        preprocessor
-    )
-
-    print("\nRandom Forest Classifier Results")
-    print("--------------------------------")
-    for key, value in metrics.items():
-        print(f"{key}: {value}")
